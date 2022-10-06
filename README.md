@@ -70,3 +70,18 @@ Don't use hashes when
 + Record stores only one or two attributes
 + Used only for creating relations between different records
 + The record is only used for time series data
+
+two note here
+- First note
+hset recreate object
+- Second note
+set command
+
+Serialize
+Gets an object ready to go into redis as a hash
+removes IDTurns dates into queryable format
+
+Deserialize
+Formats data coming out of redis
+add in id
+Parse string numbers into plain numbers
