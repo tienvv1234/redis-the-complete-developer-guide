@@ -31,3 +31,42 @@ command set asd 'HI there' xx | | response null
 Redis
 xx Option: only run the Set if the key already exists
 nx Option: only run the SET if the key does not exist
+
+Design consideration
+
+1. What type of data are we storing --> String
+2. Should we be concerned about the size of data --> Yes! only cache certain pages
+3. Do we nned to expire this data --> Yes
+4. What will the key naming policy be for this data -->
+5. Any business logic concerns --> Nope
+
+## Key naming methodology
+
+-   Keys should be unique
+-   Other engineers should understand what a key is for
+-   Tip - use functions to generate your key names so you never make a type
+-   Extremelu common practice is to use a ':' to separate different parts of the key (users:45, items:19, users:posts:901)
+
+#### small twist on common practice
+
+we are going to use a # before unique ID's to make implementing search easier
+(users#45, items#19, users:posts#901)
+
+pagecache#/about --> <html></html>
+pagecache#/privacy --> <html></html>
+pagecache#/auth/signin --> <html></html>
+pagecache#/auth/signup --> <html></html>
+
+HSET
+create a hash and store nested key-value pairs
+
+Reasons to store as Hash
++ The record has many attributes
++ A collection of these records have to be sorted many different ways
++ Often need to access a single record at a time
+
+Don't use hashes when
++ The record is only for counting or ecforcing uniqueness
++ Record stores only one or two attributes
++ Used only for creating relations between different records
++ The record is only used for time series data
