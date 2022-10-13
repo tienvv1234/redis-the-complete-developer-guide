@@ -85,3 +85,17 @@ Deserialize
 Formats data coming out of redis
 add in id
 Parse string numbers into plain numbers
+
+## Feature Pipeline  (special feature)
+- mean take a bunch of different commands and dump them all into one single command
+Auto-Pipelining
+Node Redis will automatically pipeline requests that are made during the same "tick".
+
+client.set('Tm9kZSBSZWRpcw==', 'users:1');
+client.sAdd('users:1:tokens', 'Tm9kZSBSZWRpcw==');
+Of course, if you don't do something with your Promises you're certain to get unhandled Promise exceptions. To take advantage of auto-pipelining and handle your Promises, use Promise.all().
+
+await Promise.all([
+  client.set('Tm9kZSBSZWRpcw==', 'users:1'),
+  client.sAdd('users:1:tokens', 'Tm9kZSBSZWRpcw==')
+]);
