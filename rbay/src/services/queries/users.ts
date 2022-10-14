@@ -14,6 +14,8 @@ export const createUser = async (attrs: CreateUserAttrs) => {
     const id = genId();
     // because we no need to save id in object value, the key is enough
     // memory usage is reduced a bit
+    // See if the username is already taken
+    
     await client.hSet(usersKey(id), serialize(attrs));
     return id;
 };

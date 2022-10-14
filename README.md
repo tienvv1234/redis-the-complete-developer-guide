@@ -99,3 +99,18 @@ await Promise.all([
   client.set('Tm9kZSBSZWRpcw==', 'users:1'),
   client.sAdd('users:1:tokens', 'Tm9kZSBSZWRpcw==')
 ]);
+
+### SET
+Union - return all unique elements from all sets
+Intersection - Return elements that exist in all sets
+Diff - Return elements that exist in the first set but not any other
+
+Set use case
+
+Enforcing uniqueness of any value
+
+Creating a relationship beteen different records
+
+Finding common attributes between different things
+
+General list of elements where order doesnt matter
